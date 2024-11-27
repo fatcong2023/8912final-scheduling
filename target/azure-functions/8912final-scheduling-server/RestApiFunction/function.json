@@ -1,0 +1,16 @@
+{
+  "scriptFile" : "../8912final-scheduling-java-1.0-SNAPSHOT.jar",
+  "entryPoint" : "scheduling.RestApiFunc.getHello",
+  "bindings" : [ {
+    "type" : "httpTrigger",
+    "direction" : "in",
+    "name" : "req",
+    "route" : "get",
+    "methods" : [ "GET" ],
+    "authLevel" : "ANONYMOUS"
+  }, {
+    "type" : "http",
+    "direction" : "out",
+    "name" : "$return"
+  } ]
+}
