@@ -187,6 +187,5 @@ public class RestApiFunc {
                           .body("Error deleting appointment: " + e.getMessage())
                           .build();
         }
-    }
-    
+    }    
 }
