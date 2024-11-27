@@ -16,7 +16,7 @@ env:
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     permissions:
       id-token: write #This is required for requesting the JWT
 
@@ -25,13 +25,14 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Java Sdk ${{ env.JAVA_VERSION }}
-        uses: actions/setup-java@v1
-        with: |+
+        uses: actions/setup-java@v4
+        with:
           java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'microsoft'
 
       - name: 'Restore Project Dependencies Using Mvn'
         shell: pwsh
-        run: |+
+        run: |
           pushd './${{ env.PACKAGE_DIRECTORY }}'
           mvn clean package
           popd
@@ -39,9 +40,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_89F07683FB6347AD82C6DF1BC720217E }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_03D82129932B40A0A1428CFE39EA0453 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_DEF26E2546F64EFB8A8D64CB05A3FD30 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_AF7C27CEC9E04DA1819FBD5B21D1782F }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_BC1AAB9DB2304B8FAFE691B8079401F4 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_C11F7D810062482A9A0C8F7ADDCE6FF7 }}
 
       - name: 'Run Azure Functions Action'
         uses: Azure/functions-action@v1
